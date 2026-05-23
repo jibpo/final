@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ก๊วนแบดมินตัน</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Kanit', sans-serif; 
+            background-color: #F8F9FA; 
+            margin: 0; 
+            padding: 20px; 
+            color: #212529; 
+        }
+        
+        .container { 
+            max-width: 550px; 
+            margin: 0 auto; 
+            background: #ffffff; 
+            padding: 30px; 
+            border-radius: 24px; 
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04); 
+            border: 1px solid #E9ECEF;
+        }
+        
+        h1 { 
+            text-align: center; 
+            color: #1A365D; 
+            font-family: 'Kanit', sans-serif;
+            font-size: 32px; 
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-weight: 700; 
+        }
+        
+        h2 { 
+            color: #212529; 
+            font-size: 22px; 
+            font-weight: 600;
+            margin-top: 0; 
+            margin-bottom: 15px; 
+        }
+        
+        .section { 
+            background: #ffffff; 
+            border: 1px solid #CED4DA; 
+            border-radius: 16px; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            box-sizing: border-box;
+        }
+        
+        .input-group { 
+            display: flex; 
+            gap: 8px; 
+            margin-bottom: 12px; 
+        }
+        
+        input[type="text"] { 
+            flex: 1; 
+            padding: 12px 16px; 
+            border: 1px solid #ADB5BD; 
+            border-radius: 12px; 
+            font-size: 16px; 
+            font-family: 'Kanit', sans-serif;
+            outline: none; 
+            color: #212529;
+        }
+        
+        input[type="text"]:focus { 
+            border-color: #1A365D; 
+        }
+        
+        button { 
+            font-family: 'Kanit', sans-serif;
+            border: none; 
+            padding: 10px 18px; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-add { 
+            background-color: #1A365D; 
+            color: white; 
+            box-shadow: 0 3px 6px rgba(26, 54, 93, 0.2);
+        }
+        .btn-add:hover { background-color: #2A4365; }
+        .btn-add:active { transform: translateY(1px); box-shadow: none; }
+        
+        .clear-zone { display: flex; justify-content: space-between; gap: 8px; margin-top: 25px; }
+        .btn-clear-history { background-color: #FFFFFF; color: #DC3545; border: 1px solid #DC3545; flex: 1;}
+        .btn-clear-history:hover { background-color: #FFF5F5; }
+        .btn-clear-all { background-color: #FFFFFF; color: #495057; border: 1px solid #CED4DA; flex: 1;}
+        .btn-clear-all:hover { background-color: #F8F9FA; border-color: #868E96; }
+        
+        .btn-main-match { 
+            background-color: #2B6CB0; 
+            color: white; 
+            width: 100%; 
+            font-size: 18px; 
+            font-weight: 600;
+            padding: 15px; 
+            border-radius: 14px; 
+            box-shadow: 0 4px 8px rgba(43, 108, 176, 0.25);
+            font-family: 'Kanit', sans-serif;
+        }
+        .btn-main-match:hover { background-color: #2C5282; }
+        .btn-main-match:active { transform: translateY(1px); box-shadow: none; }
+        
+        .btn-redo { background-color: #FFFFFF; color: #495057; border: 1px solid #CED4DA; font-size: 14px; padding: 6px 14px; margin-top: 14px; border-radius: 8px;}
+        .btn-redo:hover { background-color: #F8F9FA; }
+        
+        .friends-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px; 
+            margin-top: 15px;
+        }
+
+        .player-box { 
+            display: inline-flex; 
+            align-items: center; 
+            position: relative; 
+            background: #F1F3F5; 
+            color: #212529;
+            padding: 6px 14px 6px 10px; 
+            border-radius: 10px; 
+            font-size: 15px; 
+            border: 1px solid #DEE2E6;
+            width: fit-content;       
+            box-sizing: border-box;
+        }
+
+        .btn-del { 
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #DC3545; 
+            color: white;
+            font-size: 11px; 
+            width: 16px;
+            height: 16px;
+            padding: 0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            line-height: 1;
+            cursor: pointer;
+            border: none;
+            flex-shrink: 0;
+        }
+        .btn-del:hover { background-color: #BD2130; transform: scale(1.1); }
+        
+        .court-box { 
+            background: #FFFFFF; 
+            border: 2px dashed #1A365D; 
+            border-radius: 14px; 
+            padding: 20px; 
+            margin-top: 15px; 
+            text-align: center; 
+        }
+        .vs-flex { display: flex; justify-content: space-between; align-items: center; margin: 12px 0; }
+        .team-box { 
+            width: 44%; 
+            background: #F8F9FA; 
+            padding: 12px 6px; 
+            border-radius: 10px; 
+            font-size: 16px; 
+            font-weight: 600;
+            color: #1A365D;
+            border: 1px solid #CED4DA;
+        }
+        .vs-text { font-style: italic; color: #DC3545; font-size: 16px; font-weight: 700; }
+        
+        table { width: 100%; border-collapse: collapse; font-size: 15px; }
+        th, td { padding: 12px 10px; text-align: center; border-bottom: 1px solid #DEE2E6; }
+        th { color: #495057; font-weight: 600; font-size: 14px; background-color: #F1F3F5; border-radius: 6px; }
+        td { color: #212529; }
+        
+        .status-playing { 
+            color: #FFFFFF; 
+            background: #2B8A3E; 
+            padding: 4px 14px; 
+            border-radius: 20px; 
+            font-weight: 500;
+            display: inline-block;
+            font-size: 13px;
+        }
+        .status-waiting { 
+            color: #FFFFFF; 
+            background: #DC3545; 
+            padding: 4px 14px; 
+            border-radius: 20px; 
+            font-weight: 500;
+            display: inline-block;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🏸 ก๊วนแบดมินตัน</h1>
+    
+    <div class="section">
+        <h2>👥 รายชื่อก๊วน</h2>
+        <div class="input-group">
+            <input type="text" id="nameIn" placeholder="พิมพ์ชื่อ..." onkeypress="if(event.key === 'Enter') addFriend()">
+            <button class="btn-add" onclick="addFriend()">+</button>
+        </div>
+        <div id="showFriends" class="friends-grid"></div>
+        
+        <div class="clear-zone">
+            <button class="btn-clear-history" onclick="clearEverything()">🧹 Clear</button>
+            <button class="btn-clear-all" onclick="clearHistoryOnly()">❌ Reset</button>
+        </div>
+    </div>
+
+    <div class="section" style="text-align: center;">
+        <button class="btn-main-match" onclick="startMatch()">🎲 สุ่มก๊วน</button>
+        
+        <div id="courtArea" style="display: none;">
+            <div class="court-box">
+                <div style="font-weight: 500; color: #495057; margin-bottom: 8px; font-size: 14px;">✨ รายชื่อก๊วน ✨</div>
+                <div class="vs-flex">
+                    <div class="team-box" id="tA">ทีม A</div>
+                    <div class="vs-text">VS</div>
+                    <div class="team-box" id="tB">ทีม B</div>
+                </div>
+            </div>
+            <button class="btn-redo" onclick="redoMatch()">🔄 สุ่มใหม่</button>
+        </div>
+    </div>
+
+    <div class="section" style="padding: 10px 0 20px 0;">
+        <h2 style="padding: 10px 20px 0 20px;">📊 Queue</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: left; padding-left: 20px;">ชื่อ</th>
+                    <th>จำนวนเกม</th>
+                    <th>สถานะ</th>
+                </tr>
+            </thead>
+            <tbody id="queueTable">
+                </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script>
+    let members = [];
+    let historyLastRound = [];
+    let groupOfFour = []; 
+    let teamSaved = [];   
+    let pairHistory = {};    
+
+    window.onload = function() {
+        if (localStorage.getItem('badminton_members')) {
+            members = JSON.parse(localStorage.getItem('badminton_members'));
+            historyLastRound = JSON.parse(localStorage.getItem('badminton_historyLastRound')) || [];
+            groupOfFour = JSON.parse(localStorage.getItem('badminton_groupOfFour')) || [];
+            teamSaved = JSON.parse(localStorage.getItem('badminton_teamSaved')) || [];
+            pairHistory = JSON.parse(localStorage.getItem('badminton_pairHistory')) || {};
+            
+            if (teamSaved.length === 4) {
+                document.getElementById('tA').innerText = `${teamSaved[0].name} + ${teamSaved[1].name}`;
+                document.getElementById('tB').innerText = `${teamSaved[2].name} + ${teamSaved[3].name}`;
+                document.getElementById('courtArea').style.display = 'block';
+            }
+            refreshScreen();
+        }
+    };
+
+    function saveData() {
+        localStorage.setItem('badminton_members', JSON.stringify(members));
+        localStorage.setItem('badminton_historyLastRound', JSON.stringify(historyLastRound));
+        localStorage.setItem('badminton_groupOfFour', JSON.stringify(groupOfFour));
+        localStorage.setItem('badminton_teamSaved', JSON.stringify(teamSaved));
+        localStorage.setItem('badminton_pairHistory', JSON.stringify(pairHistory));
+    }
+
+    function addFriend() {
+        const input = document.getElementById('nameIn');
+        const name = input.value.trim();
+        
+        if (name === "") return;
+        if (members.some(m => m.name === name)) {
+            alert("ชื่อนี้ซ้ำ!");
+            return;
+        }
+
+        members.push({ name: name, count: 0 });
+        pairHistory[name] = {};
+        
+        input.value = "";
+        refreshScreen();
+        saveData();
+    }
+
+    function removeFriend(targetName) {
+        members = members.filter(m => m.name !== targetName);
+        historyLastRound = historyLastRound.filter(n => n !== targetName);
+        groupOfFour = groupOfFour.filter(m => m.name !== targetName);
+        
+        delete pairHistory[targetName];
+        for (let name in pairHistory) {
+            if (pairHistory[name][targetName]) delete pairHistory[name][targetName];
+        }
+        
+        if (teamSaved.some(m => m.name === targetName)) {
+            teamSaved = [];
+            document.getElementById('courtArea').style.display = 'none';
+        }
+
+        refreshScreen();
+        saveData();
+    }
+
+    function refreshScreen() {
+        const container = document.getElementById('showFriends');
+        container.innerHTML = "";
+        members.forEach(m => {
+            container.innerHTML += `
+                <span class="player-box">
+                    ${m.name}
+                    <button class="btn-del" onclick="removeFriend('${m.name}')">×</button>
+                </span>`;
+        });
+
+        const tableBody = document.getElementById('queueTable');
+        tableBody.innerHTML = "";
+        
+        let sorted = [...members].sort((a,b) => a.count - b.count);
+        
+        sorted.forEach(m => {
+            const statusText = historyLastRound.includes(m.name) 
+                ? '<span class="status-playing">กำลังเล่น</span>' 
+                : '<span class="status-waiting">รอคิว</span>';
+            tableBody.innerHTML += `
+                <tr>
+                    <td style="text-align: left; padding-left: 20px;"><strong>${m.name}</strong></td>
+                    <td><span style="font-weight: 600;">${m.count}</span> เกม</td>
+                    <td>${statusText}</td>
+                </tr>
+            `;
+        });
+    }
+
+    function startMatch() {
+        if (members.length < 4) {
+            alert("ต้องมีคนอย่างน้อย 4 คนขึ้นไปตอนนี้มีแค่ " + members.length + " คน");
+            return;
+        }
+
+        let nonPlayers = [];
+        let justPlayed = [];
+
+        members.forEach(m => {
+            if (historyLastRound.includes(m.name)) {
+                justPlayed.push(m);
+            } else {
+                nonPlayers.push(m);
+            }
+        });
+
+        nonPlayers.sort(() => Math.random() - 0.5).sort((a, b) => a.count - b.count);
+        justPlayed.sort(() => Math.random() - 0.5).sort((a, b) => a.count - b.count);
+
+        let queue = [...nonPlayers, ...justPlayed];
+        groupOfFour = queue.slice(0, 4);
+
+        mixTeams(groupOfFour, true); 
+    }
+
+    function redoMatch() {
+        if (groupOfFour.length < 4 || teamSaved.length < 4) return;
+
+        minusHistory(teamSaved[0].name, teamSaved[1].name);
+        minusHistory(teamSaved[2].name, teamSaved[3].name);
+
+        members.forEach(m => {
+            if (historyLastRound.includes(m.name)) m.count -= 1;
+        });
+
+        historyLastRound = [];
+        mixTeams(groupOfFour, true);
+    }
+
+    function mixTeams(fourPeople, counting) {
+        let p1 = fourPeople[0], p2 = fourPeople[1], p3 = fourPeople[2], p4 = fourPeople[3];
+
+        function checkPair(a, b) { return pairHistory[a][b] || 0; }
+
+        let s1 = checkPair(p1.name, p2.name) + checkPair(p3.name, p4.name);
+        let s2 = checkPair(p1.name, p3.name) + checkPair(p2.name, p4.name);
+        let s3 = checkPair(p1.name, p4.name) + checkPair(p2.name, p3.name);
+
+        let ways = [];
+        let lowest = Math.min(s1, s2, s3);
+        
+        if (s1 === lowest) ways.push([p1, p2, p3, p4]);
+        if (s2 === lowest) ways.push([p1, p3, p2, p4]);
+        if (s3 === lowest) ways.push([p1, p4, p2, p3]);
+
+        let final = ways[Math.floor(Math.random() * ways.length)];
+        teamSaved = [...final];
+
+        document.getElementById('tA').innerText = `${final[0].name} + ${final[1].name}`;
+        document.getElementById('tB').innerText = `${final[2].name} + ${final[3].name}`;
+        document.getElementById('courtArea').style.display = 'block';
+
+        if (counting) {
+            addHistory(final[0].name, final[1].name);
+            addHistory(final[2].name, final[3].name);
+
+            historyLastRound = final.map(m => m.name);
+            members.forEach(m => {
+                if (historyLastRound.includes(m.name)) m.count += 1;
+            });
+            refreshScreen();
+        }
+        saveData();
+    }
+
+    function addHistory(a, b) {
+        pairHistory[a][b] = (pairHistory[a][b] || 0) + 1;
+        pairHistory[b][a] = (pairHistory[b][a] || 0) + 1;
+    }
+
+    function minusHistory(a, b) {
+        if (pairHistory[a] && pairHistory[a][b]) pairHistory[a][b] -= 1;
+        if (pairHistory[b] && pairHistory[b][a]) pairHistory[b][a] -= 1;
+    }
+
+    // ฟังก์ชันสำหรับปุ่ม Reset: ล้างประวัติการเล่น แต่เก็บรายชื่อไว้
+    function clearHistoryOnly() {
+        if (confirm("ต้องการรีเซ็ตประวัติการจับคู่ใช่ไหม?")) {
+            members.forEach(m => m.count = 0);
+            historyLastRound = [];
+            groupOfFour = [];
+            teamSaved = [];
+            pairHistory = {};
+            members.forEach(m => { pairHistory[m.name] = {}; });
+            document.getElementById('courtArea').style.display = 'none';
+            refreshScreen();
+            saveData();
+        }
+    }
+
+    // ฟังก์ชันสำหรับปุ่ม Clear: ลบรายชื่อเพื่อนทั้งหมดออกจากระบบ
+    function clearEverything() {
+        if (confirm("ต้องการลบรายชื่อใช่ไหม?")) {
+            members = [];
+            historyLastRound = [];
+            groupOfFour = [];
+            teamSaved = [];
+            pairHistory = {};
+            document.getElementById('courtArea').style.display = 'none';
+            refreshScreen();
+            localStorage.clear();
+        }
+    }
+</script>
+
+</body>
+</html>
