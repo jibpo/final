@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ก๊วนแบดมินตัน</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+<div class="container">
+    <h1>🏸 ก๊วนแบดมินตัน</h1>
+    
+    <div class="section">
+        <h2>👥 รายชื่อก๊วน</h2>
+        <div class="input-group">
+            <input type="text" id="nameIn" placeholder="พิมพ์ชื่อ..." onkeypress="if(event.key === 'Enter') addFriend()">
+            <button class="btn-add" onclick="addFriend()">+</button>
+        </div>
+        <div id="showFriends" class="friends-grid"></div>
+        
+        <div class="clear-zone">
+            <button class="btn-clear-history" onclick="clearEverything()">🧹 Clear</button>
+            <button class="btn-clear-all" onclick="clearHistoryOnly()">❌ Reset</button>
+        </div>
+    </div>
+
+    <div class="section" style="text-align: center;">
+        <button class="btn-main-match" onclick="startMatch()">🎲 สุ่มก๊วน</button>
+        
+        <div id="courtArea" style="display: none;">
+            <div class="court-box">
+                <div style="font-weight: 500; color: #495057; margin-bottom: 8px; font-size: 14px;">✨ รายชื่อก๊วน ✨</div>
+                <div class="vs-flex">
+                    <div class="team-box" id="tA">ทีม A</div>
+                    <div class="vs-text">VS</div>
+                    <div class="team-box" id="tB">ทีม B</div>
+                </div>
+            </div>
+            <button class="btn-redo" onclick="redoMatch()">🔄 สุ่มใหม่</button>
+        </div>
+    </div>
+
+    <div class="section" style="padding: 10px 0 20px 0;">
+        <h2 style="padding: 10px 20px 0 20px;">📊 Queue</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: left; padding-left: 20px;">ชื่อ</th>
+                    <th>จำนวนเกม</th>
+                    <th>สถานะ</th>
+                </tr>
+            </thead>
+            <tbody id="queueTable">
+                </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
